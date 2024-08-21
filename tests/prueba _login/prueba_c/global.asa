@@ -1,0 +1,22 @@
+<script runat="server" language="VBScript">
+Sub Application_OnStart
+    ' Definir la cadena de conexión a la base de datos
+    Application("ConexionDB") = "Provider=SQLOLEDB; Data Source=172.174.16.59; Initial Catalog=BHMTC; User ID=sa; Password=eb2022$$"
+End Sub
+
+Sub Application_OnEnd
+    ' Aquí podrías realizar tareas de limpieza, si es necesario
+End Sub
+
+Sub Session_OnStart
+    ' Establecer la codificación de la respuesta
+    Response.CodePage = 65001
+    Response.Charset = "UTF-8"
+    ' Establecer el tiempo de espera de la sesión
+    Session.TimeOut = 500
+End Sub
+
+Sub Session_OnEnd
+    ' Aquí podrías realizar tareas de limpieza para la sesión, si es necesario
+End Sub
+</script>
