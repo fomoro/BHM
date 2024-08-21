@@ -1,0 +1,5 @@
+http://localhost:9023/tests/connection_tests/prueba_asp/prueba1.asp
+http://localhost:9023/tests/connection_tests/prueba_asp/prueba2.asp
+
+el archivo global.asa debe ir en la carpeta raiz del proyecto
+http://localhost:9023/tests/connection_tests/prueba_global/prueba.asp

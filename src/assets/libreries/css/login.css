@@ -1,0 +1,66 @@
+body {
+    background-image: url('../../images/backgrounds/16.jpg'); 
+    background-size: cover;
+    background-position: center;    
+}
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 15px;
+}
+.login-card {
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    background-color: rgba(175, 175, 175, 0.3); /* Fondo del formulario con mayor transparencia */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque para el fondo */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Borde más duro */
+}
+.logo {
+    width: 200px;
+}
+.form-container {
+    background: linear-gradient(to bottom, #ffffff 0%, #d3d1d1 100%); /* Gradiente para efecto 3D */
+    padding: 10px 15px; /* Ajustar el padding para acercar el borde al contenido */
+    margin-bottom: 15px; /* Añadir margen inferior */
+    border: 2px solid #666; /* Borde sólido gris oscuro */
+    border-radius: 5px; /* Bordes ligeramente redondeados */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra para el efecto tridimensional */
+    transition: all 0.3s; /* Transiciones suaves */
+}
+.form-container:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada al pasar el ratón */
+}
+fieldset {
+    border: 2px solid #a5a0a0;
+    padding: 5px;            
+}
+legend {
+    font-size: 0.9em; /* Tamaño de fuente reducido para 'Datos de Ingreso' */
+    color: #181717;
+}
+.btn-custom {
+    background: linear-gradient(to bottom, #e0e0e0 0%, #c0c0c0 100%); /* Gradiente para efecto 3D */
+    color: #000; /* Color del texto */
+    border: 2px solid #666; /* Borde sólido gris oscuro */
+    padding: 8px 16px; /* Espaciado interno más amplio */
+    font-size: 14px; /* Tamaño de fuente similar al de los botones VB */
+    cursor: pointer;
+    text-align: center;
+    border-radius: 3px; /* Bordes ligeramente redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para el efecto tridimensional */
+    transition: all 0.3s; /* Transiciones suaves */
+}
+.btn-custom:active {
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.5); /* Efecto de depresión al hacer clic */
+    background: linear-gradient(to bottom, #dddcdc 0%, #a0a0a0 100%); /* Gradiente más oscuro al hacer clic */
+}
+.btn-custom:hover {
+    background: linear-gradient(to bottom, #fdfdfd 0%, #b0b0b0 100%); /* Gradiente más oscuro al pasar el ratón */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada al pasar el ratón */
+}
+.btn-container {
+    margin-top: 10px; /* Añadir margen superior para separar de los campos del formulario */
+}

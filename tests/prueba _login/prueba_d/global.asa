@@ -1,0 +1,93 @@
+<script runat="server" language="VBScript">
+Sub Application_OnStart
+    ' Definir la cadena de conexión a la base de datos
+    Application("ConexionDB") = "Provider=SQLOLEDB; Data Source=172.174.16.59; Initial Catalog=BHMTC; User ID=sa; Password=eb2022$$"
+    
+    ' Definir otras variables globales
+    Application("AppName") = "Mi Aplicación"
+    Application("AdminEmail") = "admin@example.com"
+    
+    ' Inicializar el registro de actividades
+    Dim logDir, logFilePath
+    logDir = Server.MapPath("/data/logs")
+    logFilePath = logDir & "/app_log.txt"
+    
+    ' Verificar si el directorio de logs existe, si no, crearlo
+    Dim fs
+    Set fs = Server.CreateObject("Scripting.FileSystemObject")
+    If Not fs.FolderExists(logDir) Then
+        fs.CreateFolder(logDir)
+    End If
+    Set fs = Nothing
+    
+    Application("LogFilePath") = logFilePath
+    LogEvent "Application started"
+End Sub
+
+Sub Application_OnEnd
+    ' Aquí podrías realizar tareas de limpieza, si es necesario
+    LogEvent "Application ended"
+End Sub
+
+Sub Session_OnStart
+    ' Establecer la codificación de la respuesta
+    Response.CodePage = 65001
+    Response.Charset = "UTF-8"
+    
+    ' Establecer el tiempo de espera de la sesión
+    Session.TimeOut = 500
+    
+    ' Inicializar variables de sesión
+    Session("UserLoggedIn") = False
+    Session("Usuario") = ""
+    Session("UsuarioId") = ""
+    
+    LogEvent "Session started"
+End Sub
+
+Sub Session_OnEnd
+    ' Aquí podrías realizar tareas de limpieza para la sesión, si es necesario
+    LogEvent "Session ended for user: " & Session("Usuario")
+End Sub
+
+Sub LogEvent(message)
+    Dim fs, f
+    Set fs = Server.CreateObject("Scripting.FileSystemObject")
+    Set f = fs.OpenTextFile(Application("LogFilePath"), 8, True)
+    f.WriteLine Now() & " - " & message
+    f.Close
+    Set f = Nothing
+    Set fs = Nothing
+End Sub
+
+Sub Application_OnError
+    ' Manejo de errores globales
+    Dim objError, errorCode, errorPage
+    Set objError = Server.GetLastError()
+    
+    ' Registrar el error
+    LogEvent "Error: " & objError.Description & " - " & objError.Source
+    
+    ' Determinar el código de error
+    errorCode = objError.Number
+    
+    ' Seleccionar la página de error correspondiente
+    Select Case errorCode
+        Case 400
+            errorPage = "/src/app/pages/errors/400.asp"
+        Case 401
+            errorPage = "/src/app/pages/errors/401.asp"
+        Case 403
+            errorPage = "/src/app/pages/errors/403.asp"
+        Case 404
+            errorPage = "/src/app/pages/errors/404.asp"
+        Case 500
+            errorPage = "/src/app/pages/errors/500.asp"
+        Case Else
+            errorPage = "/src/app/pages/errors/500.asp" ' Página de error genérica
+    End Select
+    
+    ' Redirigir a la página de error correspondiente
+    Response.Redirect(errorPage)
+End Sub
+</script>
