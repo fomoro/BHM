@@ -1,0 +1,17 @@
+bajar proyecto
+	cd C:\inetpub\wwwroot\Dev\FalckSLOrganizado
+	git init
+	git checkout -b main
+	git remote add origin https://github.com/fomoro/BHM.git
+	git pull origin main
+	
+bajar estilos 
+	cd C:\inetpub\wwwroot\Dev\FalckSLOrganizado\src
+	npm init -y
+	npm install admin-lte@^3.2.0 --save
+	mkdir -p src/assets/vendor/adminlte-3.2.0
+	cp -r node_modules/admin-lte/* src/assets/vendor/adminlte-3.2.0/
+
+
+
+	
